@@ -1,0 +1,19 @@
+- name: configuring the backend server
+  hosts: localhost
+  become: yes
+  tasks:
+  - name: Disabling Node Js
+    ansible.builtin.command: dnf module disable nodejs -y
+
+  - name: enable Node Js
+    ansible.builtin.command: dnf module enable nodejs:20 -y
+
+  - name: download nodeJs
+    ansible.builtin.dnf:
+      name: nodejs
+      state: started
+
+  - name: Adding user
+    ansible.builtin.user:
+      name: expense
+      
