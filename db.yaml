@@ -20,7 +20,7 @@
       name:
       - PyMySQL
       - cryptography
-    executable: pip3.9
+      executable: pip3.9
     
 # check root password is already set or not
   - name: check root password is set or not
@@ -39,5 +39,3 @@
   - name: setup root password
     ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ mysql_root_password }}"
     when: mysql_connection_output.failed is true
-
-
