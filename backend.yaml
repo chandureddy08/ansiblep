@@ -11,9 +11,9 @@
   - name: download nodeJs
     ansible.builtin.dnf:
       name: nodejs
-      state: started
+      state: installed
 
   - name: Adding user
     ansible.builtin.user:
       name: expense
-      
+
