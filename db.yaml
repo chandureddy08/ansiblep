@@ -26,7 +26,7 @@
   - name: check root password is set or not
     community.mysql.mysql_info:
       login_user: root
-      login_password: {{ mysql_root_password  }}
+      login_password: "{{ mysql_root_password  }}"
       login_host: 172.31.157.4
       filter: version
     ignore_errors: yes
@@ -35,3 +35,9 @@
   - name: print output
     ansible.builtin.debug:
       msg: "Output: {{ mysql_connection_output }} "
+
+  - name: setup root password
+    ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ mysql_root_password }}"
+    when: mysql_connection_output.failed is true
+
+
