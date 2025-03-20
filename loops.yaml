@@ -7,6 +7,11 @@
       name: "{{ item.name }}" 
       state: "{{ item.state }}"
     loop:
-    - {name: 'mysql', state: 'latest'}
+    - {name: 'mysql', state: 'absent'}
     - {name: 'nginx', state: 'latest'}
-    - {name: 'postfix', state: 'latest'}
+    - {name: 'postfix', state: 'absent'}
+  - name: start nginx service
+    ansible.builtin.service:
+      name: nginx
+      state: started
+      enabled: yes
